@@ -1,0 +1,12 @@
+// TODO: for create controller:
+// nest g controller nameController
+// nest g controller controllers/products --f
+// TODO: for create services
+// next g service nameService
+// nest g s services/products --flat
+
+Pipe: transform and generate data
+
+For validate DTO
+install > npm i class-validator class-transformer
+npm i class-validator class-transformer @nestjs/mapped-types

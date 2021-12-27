@@ -1,0 +1,135 @@
+For remove git from the repository:
+  git remote -v
+  git remote rm origin
+
+For added git to the repository
+  git remote add urlRepository
+
+For create modules in nestJS
+  nest g mo users
+  nest g mo products
+
+For create controller in modules in nestJS
+  nest g co controllers/nameController moduleName --flat (remove --flat for created in folders privates)
+
+For create all resources for modules in nestJS
+  >nest g resources nameModule (if you module already created, delete module for execute this line)
+
+Use Factory, only use for connections database for example.
+
+GlobalModule use for keys, also can be used other method but sometimes and is not recommended
+
+npm i @nestjs/config has env
+
+--------------------------------------------------------------------------------------------------------
+
+Command linux:
+ - mkdir nameFolder -> create new folder
+ - touch nameFile -> create new file
+ - cp nameFile.txt nameFile_copia.txt -> copy file
+ - mv nameFile.tst nameFolder -> move file in folder
+ - rm nameFile.txt -> delete file
+ - rm -r nameFolder -> delete folder with all contents
+
+---------------------------------------------------------------------------------------------------------
+Always clone in SSH from GitHub
+
+---------------------------------------------------------------------------------------------------------
+
+TERMINAL
+  ls -l -> list all files with lenght
+  ls -lh -> list all files with lenght and type (kb, mb, etc)
+  pwd -> show route
+  file nameFile -> show description file
+
+  ls -la -> show files ocults
+  ls -lr -> desc order
+
+  tree
+    tree --version 
+    sudo apt-get install tree
+    sudo apt-get update
+    tree --version
+
+    tree -L [nivel (1,2,etc)]
+
+  mkdir nameFolder -> create folder
+  touch nameFile -> create file
+  mkdir nameFolder -> create new folder
+  touch nameFile -> create new file
+  cp nameFile.txt nameFile_copia.txt -> copy file
+  mv nameFile.tst nameFolder -> move file in folder
+  rm nameFile.txt -> delete file
+  rm -r nameFolder -> delete folder with all contents
+  mv nameFile nameNewFileRename -> rename file or directory  
+  rm -i nameFile -> remove file but show a confirm message 
+  rm -rf nameFolder -> remove force all files
+  rm -ri nameFolder -> remove file but shoe a confirm message
+
+  head nameFile -> show 10 lines of file
+  head nameFile -n 15 -> show 15 lines of file
+  tail nameFile -> show last line file
+  tail nameFile -n 15 -> show last 15 lines
+
+  less nameFile -> show file (notepad)
+
+  wslview nameFile -> open notepad with file
+  wslview nameFolder -> open explorer.exe with folder
+
+  WILLCARDS
+    Nos sirven para realizar seccionamiento de archivos o directorios, ademas de ls los willcards tambien pueden usarse con cualquier comando que realice la manipulación de archivos como mv, cp, rm.
+
+  >
+    ls > myFile.txt
+    ls >> myFile.txt -> for concat
+    ls route/ > output.txt 
+  
+  Pipe operator "|"
+    ls -lh | less
+    ls -lh | tee output.txt | less
+
+  lolcat -> paint the text
+    echo "hello love" |  lolcat
+  cowsay -> show vaca with the message
+    cowsay "message"
+
+  using pipe operator: cowsay "helo my friends" | lolcat
+
+  cowsay -f dragon-and-cow "Like si te quedaste jugando con lolcat un rato!" | lolcat -F 12 -d 5 -a
+
+  CONTROL OPERATOR
+  exec commands sync: ";"
+  exec commands async: "&"
+  exec commands conditional and: "&&" -> mkdir test && cd test
+  exec commnds conditional or: "||"
+
+  Change password: passwd
+  change user: su nameUser
+  
+  Utitilties RED
+
+  en algunas distribuciones de Linux no viene preinstalado ifconfig o netstat, para ello debemos instalar el paquete con sudo apt install net-tools. Otra alternativa para ver la dirección IP es usar el comando ip address o su abreviatura ip a
+
+    $ ifconfig // sirve para ver la mascara de red, puerto de transmisión, tarjeta de red, etc
+    $ ping // nos muestra si una ip o pagina, esta activa, si salen paquetes es porque hay conexión.
+    $ curl pagina_web// podemos traer el html de una pagina, podríamos guardarlo con el estándar output.
+    $ wget pagina_web // nos descarga el archivo html, pero con formato.
+    $ traceroute pagina_web // nos sirve para ver por cuales computadoras tenemos que ir pasando para llegar por ejemplo a una pagina web. Ejemplo, nos saldrán las ip que tenemos que pasar para llegar a la pagina que queremos.
+    $ netstat –i // nos muestra los dispositivos de red.
+
+  COMPRESS
+    tar -cvf personalProjects.tar personalProjects
+    tar -cvzf personalProjects.tar.gz personalProjects
+
+    zip -r toCompress.zip toCompress
+
+  UNCOMPRESS
+    tar -xzvf personalProjects.tar.gz
+
+    unzip toCompress.zip
+
+  VIEW FILE COMPRESS
+    tar tvf archivo.tar
+
+  PROCESS
+    sudo apt install htop -> is better

@@ -1,0 +1,134 @@
+Javascript nació en 1995.
+En 1995 Microfost aplico ingeniería inversa a javascript para crear JScript.
+
+ECMA.- es una espcificación estandariaza por ECMA INTERNATIONAL.
+
+Javascript Engine.- Es el motor de javascript y siempre corre en el navegador. Es un interprete que lo comunica a la computadora. "JUST IN TIME COMPILER" se le conce de esa forma.
+
+V8 y el navegador.- Motor de javascript que corre en google chrome. Es un motor open-source escrito en C++ para compilar javascript y WebAssembly en código máquina. Esto quiere decir que traduce Javascript a un código puramente digital capaz de ser interpretado por la CPU donde se ejecuta. Este motor fue desarrollao por google para google chrome y su primera versión vió la luz en 2008 junto con la primera versión del navegador. Nace debido a que necesita correr de una manera correcta Google Maps.
+
+	- V8 - Google Chrome
+	- Firefox - SpiderMonkey
+	- Edge - ChakraCore
+	- Safari - JavascriptCore
+	- Opera - Caracan
+
+ENGINE.- 
+	- Una vez el motor recibe un archivo JS genera un Global enviroment.
+	- En el global enviroment se genera un global object que es igual a window.
+	- También se genera una variable this.
+	- This depende del contexto, en el entorno global this es igual al objecto global.
+	- Ya después de generado el entorno global comienza a correr nuestro código en el contexto de ejecución, a través de un stack de tareas apiladas.
+	- Una vez que el motor comienza a interectuar con el navegador, genera un parseo del documento completo, para encontrar las keyword y las pasa al AST (abstract syntax tree - astexplorer.net).
+	- Una vez se tiene el AST, el motor lo pasa al interprete para retornar bytecode que va ser entendido por la máquina.
+	- Si en la interpretación del AST ve muhco código que se repite y que se puede optimizar, entra el profiler o monitor, y optimiza el código y los regresa compilado a bytecode para que la máquina la pueda comprender. Es justo en este paso donde aparece el hoisting, donde el motor en su función de optimización reinterpreta el código de una mejor forma y se pueden presentar errores de programación.
+	- El hoisting solo sucede con variables y funciones que se mandan a llamar.
+	- Una estrcita definición de hoisting sugiere que las declaraciones de variables y funciones son fisicamente movidas al comienzo del código, asignandoles en memoria dentro de un contexto de ejecución.
+
+HOISTING:
+	> console.log(nombre)
+	> apellido();
+	> var nombre = "diego"
+	> function apellido() {
+	> 	console.log("de grada")
+	> }
+
+	- Como el motor de javascript lo interpreta:
+	> var nombre = undefined
+	> function apellido() {
+	>	console.log("de grada")
+	> }
+	> console.log(nombre)
+	> apellido()
+	> nombre = "diego"
+
+	- Si te preguntas cuál pone más arriba, ¿Las variables o las funciones? La respuesta es las variables.
+	> var nombre
+	> function nombre() {}
+	> typeof nombre // Output: "function"
+
+	- ¿Y si probamos primero la función y luego la variable?
+	> function nombre() {}
+	> var nombre
+	> typeof nombre // Output: "function"
+
+	- Pero es porque javascript hace hoisting solo de la declaración de la variable. Javascript trata la declaración y asignaci´on en una sola linea como dos pasos, por que si escribimos:
+	> var nombre = "platzi"
+
+	- El motor lo interpreta así:
+	> var nombre = undefined
+	> nombre = "platzi"
+
+	- así que cuando escribimos:
+	> var nombre = "platzi"
+	> function nombre() {}
+	> typeof nombre // Output: "string"
+
+	- Como lo interpreta el motor de javascript es así:
+	> var nombre = undefined
+	> function nombre() {}
+	> nombre = "platzi"
+	> typeof nombre // Output: "string"
+
+	- Es decir que "se deja atras" la asignación. 
+	- Obviamente nigún desarrollador debería de escribir código así de confuso, esto es solo saber como funciona Javasctipt y su engine, ese conocimiento te hace mejor desarrolaldor y te destaca de entre otros.
+
+MEMORY HEAP.- es un lugar donde se guardan objetos y fuciones en bloques de memoria de forma arbitraria y sin un orden, los cuales pueden usados múltiples veces y sin una referencia unica.
+	- Donde se almacena los valores de las variables y las funciones.
+	- Se destina un esp<cio de memoria para las variables.
+	- La información en el memory heap, no se guarda de manera lineal.
+
+CALL STACK.- Es un mecanismo para que in +interprete realice un seguimiento de su lugar en un script que llama a múltiples funciones: que función se esta ejecutando actualmente y qué funcione se invocan desde esa función, etc. Cuando un script llama a una función, el interepte la agrega a la pila de llamadas y luego comienza a llevar a cabo la función. Cualquire función llamada por esa función se agrega a la pila de llamada más arriba y se ejcuta donde se alcanzan sus llamadas. Cuando finaliza la función actual, el intérprete la quita de la pila y reanuda la ejecución donde la dejó en la última lista de códigos. Si la pila ocupa más espacio del que le había asignado, se produce un error de “desbordamiento de pila”.
+	- Como se mandan a llamar las variables y las funciones.
+	- Las tareas en el call stack se apilan de abajo hacia arriba.
+	- Se llaman de la última que mandamos a llamar hacia abajo.
+	- En la base de la pila reposa el global object.
+	- Si una funcion llama a otra, la pone encima de la pila.
+	- Se ejecuta una tarea a la vez.
+	- Una vez que se van ejecutando las tareas se van retirando de la pila.
+	- Al ejecutar todas las tareas se retira del global object.
+	- FILO: First Input Last Output (Primero en entrar ultimo en salir)
+	- LIFO: el ultimo en entrar primero en salir.
+
+GARBAGE COLLECTION.- Limpia la memoria de los datos de los datos no utilizados para no sobrecargarla y seguir trabajando sin problemas.
+	
+STACK OVERFLOW.- Se genera cuando el call stacj se llene completamente (pila de tareas). Esto pasa cuando se genera o se trabaja con bucles infinitor, recursibidad y funciones. Entonces este entra en stack overflow, tenemos que tener cuidado de ocaciones estos stack.
+	> function overflow() { overflow(); }
+	> overflow(); // Uncaught RangerError: Maximun call stack size exceded
+
+JAVASCRIPT RUNTINE.- 
+	- Javascript solo hace una cosa a la vez.
+	- Javascript es synchronous.
+	- See more http://latentflip.com/loupe, https://mauriciogc.medium.com/javascript-c%C3%B3mo-funciona-el-runtime-environment-jre-8ebceafdc938
+
+ASINCRONÍA.- 
+	- call stack: el cocinero
+	- web apis: la cocina
+	- callback queue: las ordenes preparadas
+	- event loop: el mesero
+	- Te esperare en el callback queue, paciente, hasta que el call stack de tu corazón se sienta listo para recibirme
+
+CONCLUSIÓN:
+Asincronía: Por default corre una tarea a la vez – Sincronismo
+Memory Heap: Espacio donde se guardan funciones y variables
+Call Stack: Donde se apilan todas las tareas que tenemos que hacer con Javascript
+Web API´s (Ofrecidas por el navegador para manipular lo siguiente)
+	- Dom(document)
+	- AJAX(XMLHttpRequest)
+	- Timeout(setTimeout)
+
+Call Back Queue: El orden en que se van a ejecutar a funciones
+
+Al momento de usar asincronismo sacamos funciones del Call Back Queue que no serán ejecutadas por javascript y serán ejecutadas por el navegador despues.
+
+
+
+	
+
+
+
+
+
+
+
+

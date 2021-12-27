@@ -1,0 +1,104 @@
+GIT
+ - git add filename or .
+ - git status
+
+ - git rm filename
+ - git rm --cached filename -> remove to 100%
+
+ - git config --list
+ - git config --list --show-origin
+
+ - git config --global user.name "hugoroca"
+ - git config --global user.email "hugo.rock20@hotmail.com"
+
+ - git log -> show all commits
+ - git log filename -> show commits from namefileT
+
+ - git show filename -> show changes
+
+ - git diff idCommit idCommit
+
+ - staging: lugar donde se guardan temporalmente los cambios, para luego ser guardados definitivamente en el repositorio. La única manera de que llegue a staging es ejecutando git add .
+
+ - git checkout -> get
+
+ "Volver en el tiempo sin poder volver al futuro"
+ - git reset idCommit 
+ - git reset idcommit --hard -> borra toda la información del area de staging y de los commits
+ - git reset idcommit --soft -> borra el historial pero mantiene los archivos del area de staging para poder aplicar ultimos cambios a un nuevo commit.
+ - git reset HEAD -> mueve cambios de staging a unstage.
+
+ "Elimina archivos de git sin eliminar su historial del sistema de versiones"
+ - git rm --cachead -> elimina los archivos de staging y del proximo commit pero los mantiene el disco.
+ - git rm --force -> elimina los archivos de git y del disco.
+
+ - git log --stat -> muestra los archivos por commit
+
+ - git checkout idcommit nameFile -> restaura el archivo a un versión indicada en el commit
+ - git checkout master nameFile -> restaure a la versión que esta en la rama
+ 
+ Branch
+ - git brach nameBranch -> comando para cear una nueva rama, la rama se crea desde el lugar donde estoy
+ - git checkout nameBranch -> comando para movernos de una rama a otra
+ - git checkout -b nameBranch -> este comando es una fusión entre git branch y git checkout, crea una rama y la vez hace el checkout
+
+ Rename branch
+ - git branch -m master main
+
+ Add GITHUB
+ - git remote add origin urlRepository
+ - git remote -> show all remotes
+ - git remote -v -> show all remotes
+ - git push origin main -> en caso de error
+ 	- git pull oririn main -> para traer toda la ultima version del remoto
+	- git pull origin main --allow-unrelated-histories  
+
+ KEY PUBLIC & PRIVATE
+ - Nos ayudan acifrar y descifrar nuestros archivos de forma que los posamos compartir sin correr el riesgo de que sean interceptadas con malas intenciones.
+ - La forma de hacerlo es la siguiente:
+   - Ambas personas deben crear su llave pública y privada.
+   - Ambas personas pueden compartir su llave pública a las otras partes (recuerda que esta lave es píblica, no hay probelmas si la "intenceptan").
+   - La persona que quiere compartir un mesaje puede usar la llave pública de la otra persona para sifrar los archivos y asegurarse que solo puedan ser descifradas con la llave privada de la persona con la que queramos compatir el mensaje.
+   - El mensaje está cifrado y puede ser enviado a la otra persona sin problemas en caso de que los archivos sean interceptados.
+   - La persona a la que enviamos el mensaje cifrado puede usar su llave privada para descifrar el mensaje y ver los archivos.
+
+ SSH
+ - ssh-keygen -t rsa -b 4096 -C "your@email.com" -> Se genera una llava ssh
+ - eval $(ssh-agent -s) -> enciende el servidor que detecta el servidor de ssh
+ - ssh-add ~/.ssh/idrsa -> agregamos la llave 
+
+ PARA CAMBIAR DE URL REMOTE
+ - git remote set-url origin url
+
+ PARA MOSTRAR COMO GIT EXTENCIONS
+ - git log --graph --decorate --oneline 
+
+ PARA AGREGAR UN TAG
+ - git tag -a v0.1 -m "message" idCommit
+ - git tag
+ - git show-ref --tags
+ - git push origin --tags
+
+ PARA ELIMINAR TAGS
+ - git tag -d nameTags (local)
+ - git push origin :refs/tags/nameTag (GitHub)
+
+ BRANCHS
+ - git show-branch
+ - git show-branch --all
+ - git checkout -b nameBranch -> crear rama y switch
+ - git push origin nameBranch 
+
+ CLONE REPO FROM GITHUB
+ - git clone urlRepo or ssh
+ - git pull origin footer -> create branch that was created in github
+
+ PULL REQUESTS
+ - Un pull request es un estado intermedio antes de enviar el merge.
+ - El pull request permite que otros miembros del equipo revisen el código y así aprobar el merge a la rama.
+ - Permite a las personas que no forman el equipo , trabajar y colaborar con una rama.
+ - La persona que tiene la responsabilidad de aceptar los pull request y hacer los merge tienen un perfil especial y son llamados DevOps.
+
+ test
+
+

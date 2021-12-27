@@ -1,0 +1,9 @@
+sudo npm link -> for prepare
+
+
+Para mejorar nuestros paquete y que cuente con los requerimientos mínimos para serlo haremos lo siguiente:
+ - crearemos un buen README.md en donde vamos a explicar lo que hará nuestro paquete osea toda nuestra documentación, además esto debe estar en ingles.
+ - Ademas debemos Conectarlo a un repositorio de github
+ - npm init ahora veremos que ya esta ligado a un repositorio, de igual forma podemos ver esta información en el package.json
+ - npm version <major |minor |patch> nos permite actualizar la versión de nuestro proyecto o paquete ejem npm version patch y el resultado seria v1.0.1, muchas veces nos dira que debemos actualizar a la versión mas reciente de npm y lo hacemos con sudo install -g npm , si nos vamos al package veremos que la versión a cambiado, y para publicarlos volvemos a ejecutar el comando npm publish
+ - npm unpublish -f para despublicar un paquete recuerda que debes estar ubicado en la carpeta raíz del proyecto
