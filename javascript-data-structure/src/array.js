@@ -39,6 +39,20 @@ class MyArray {
     delete this.data[this.length - 1];
     this.length--;
   }
+
+  // delete first item
+  shift() {
+    this.shiftIndex(0);
+  }
+
+  unshift(item) {
+    for (let i = this.length; i > 0; i--) {
+      this.data[i] = this.data[i - 1];
+    }
+    this.data[0] = item;
+    this.length++;
+    return this.data;
+  }
 }
 
 const myArray = new MyArray();
