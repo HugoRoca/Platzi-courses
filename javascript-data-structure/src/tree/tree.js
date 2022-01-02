@@ -43,6 +43,17 @@ class BinarySearchTree {
   }
 
   // search with value and return all nodes
+  search(value, tree = this.root) {
+    if (!tree) return `Element not found`;
+    if (value > tree.value) {
+      return this.search(value, tree.right);
+    }
+    if (value < tree.value) {
+      return this.search(value, tree.left);
+    }
+
+    return tree;
+  }
 }
 
 const myTree = new BinarySearchTree();
