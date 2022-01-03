@@ -2,4 +2,8 @@
 
 <ol>
 	<li>Node.js backend</li>
+  <ul>
+    <li>Javascript advance</li>
+    <li>Javascript data structure</li>
+  </ul>
 </ol>
