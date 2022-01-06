@@ -18,6 +18,10 @@ for (let i = 0; i < 10000; i++) {
   plus++;
 }
 console.timeEnd("time loop 3");
+
+console.time("async");
+asynchronism();
+console.timeEnd("async");
 console.timeEnd("all");
 
 function asynchronism() {
