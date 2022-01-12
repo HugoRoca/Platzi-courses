@@ -1,14 +1,28 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const response = require('../../network/response')
+const response = require("../../network/response");
+const controller = require("./controller");
 
-router.get('/', (req, res) => {
-  console.log(req.headers)
-  res.success(req, res, 'list messages')
-})
+router.get("/", (req, res) => {
+  controller
+    .getMessages()
+    .then((data) => {
+      response.success(req, res, data, 200);
+    })
+    .catch((err) => {
+      response.error(req, res, err, 400);
+    });
+});
 
-router.post('/', (req, res) => {
-  response.success(req, res, 'saved!')
-})
+router.post("/", (req, res) => {
+  controller
+    .addMessage(req.body.user, req.body.message)
+    .then((data) => {
+      response.success(req, res, data, 201);
+    })
+    .catch((err) => {
+      response.error(req, res, "error", 400);
+    });
+});
 
 module.exports = router;
