@@ -1,3 +1,5 @@
+const db = require("mongoose");
+
 const list = [];
 
 function addMessage(message) {
