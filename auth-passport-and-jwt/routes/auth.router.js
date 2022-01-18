@@ -22,7 +22,17 @@ router.post(
 router.post('/recovery', async (req, res, next) => {
   try {
     const { email } = req.body;
-    const response = await authService.sendMail(email);
+    const response = await authService.sendRecoveryPassword(email);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/change-password', async (req, res, next) => {
+  try {
+    const { token, newPassword } = req.body;
+    const response = await authService.changePassword(token, newPassword);
     res.json(response);
   } catch (error) {
     next(error);
