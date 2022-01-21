@@ -1,4 +1,6 @@
 const express = require("express");
+
+const secure = require("./secure");
 const response = require("../../../network/response");
 const Controller = require("./index");
 
@@ -22,13 +24,16 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", updateInsert);
+router.put("/", secure("update"), updateInsert);
+
+async function updateInsert(req, res) {
   try {
     await Controller.updateInsert(req.body);
     response.success(req, res, "correct insert", 200);
   } catch (error) {
     response.error(req, res, error.message, 500);
   }
-});
+}
 
 module.exports = router;

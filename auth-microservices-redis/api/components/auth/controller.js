@@ -29,5 +29,9 @@ module.exports = function (injectStore) {
     return auth.sign(data);
   }
 
-  return { updateInsert, login };
+  async function get() {
+    return store.list(TABLE);
+  }
+
+  return { updateInsert, login, get };
 };

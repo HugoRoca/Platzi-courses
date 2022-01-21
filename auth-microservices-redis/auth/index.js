@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const config = require("../config");
+const error = require("../utils/error");
 
 const secret = config.jwt.secret;
 
@@ -15,16 +16,17 @@ function verify(token) {
 const check = {
   own: (req, owner) => {
     const decoded = decodeHeader(req);
-    console.log(decoded);
+
+    if (decoded.id !== owner) throw error("Not authorized");
   },
 };
 
 function getToken(auth) {
   if (!auth) throw new Error("Token not found");
 
-  const token = auth.replace("Bearer", "");
+  const token = auth.replace("Bearer ", "");
 
-  if (auth.indexOf("Bearer ") === -1) throw new Error("Token is invalid");
+  if (auth.indexOf("Bearer ") === -1) throw error("Token is invalid");
   return token;
 }
 

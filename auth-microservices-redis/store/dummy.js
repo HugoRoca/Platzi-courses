@@ -6,14 +6,12 @@ async function list(table) {
 
 async function get(table, id) {
   let collection = await list(table);
-  console.log(collection);
   return collection.filter((item) => item.id === id)[0] || null;
 }
 
 function updateInsert(table, data) {
   if (!db[table]) db[table] = [];
   db[table].push(data);
-  console.log(db[table]);
 }
 
 function remove(table, id) {

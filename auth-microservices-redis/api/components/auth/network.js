@@ -4,6 +4,15 @@ const Controller = require("./index");
 
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+  try {
+    const data = await Controller.get();
+    response.success(req, res, data, 200);
+  } catch (error) {
+    response.error(req, res, error.message, 500);
+  }
+});
+
 router.post("/login", async (req, res) => {
   try {
     const data = await Controller.login(req.body.userName, req.body.password);
