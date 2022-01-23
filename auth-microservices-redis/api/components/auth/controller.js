@@ -8,7 +8,7 @@ module.exports = function (injectStore) {
 
   if (!store) store = require("../../../store/dummy");
 
-  async function updateInsert(data) {
+  async function updateInsert(data, isNew) {
     const authData = {
       id: data.id,
       userName: data.userName || undefined,
@@ -16,17 +16,21 @@ module.exports = function (injectStore) {
 
     authData.password = await bcrypt.hash(data.password, 10);
 
-    return store.updateInsert(TABLE, authData);
+    return store.updateInsert(TABLE, authData, isNew);
   }
 
   async function login(userName, password) {
     const data = await store.query(TABLE, { userName });
     if (!data) throw new Error("Information invalid");
 
-    const isMatch = await bcrypt.compare(password, data.password);
+    const isMatch = await bcrypt.compare(password, data[0].password);
     if (!isMatch) throw new Error("Information invalid");
 
-    return auth.sign(data);
+    return auth.sign({
+      id: data[0].id,
+      userName: data[0].userName,
+      password: data[0].password,
+    });
   }
 
   async function get() {

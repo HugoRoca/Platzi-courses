@@ -26,12 +26,34 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", updateInsert);
 router.put("/", secure("update"), updateInsert);
+router.post("/follow/:id", secure("follow"), follow);
+router.get("/:id/following", following);
 
 async function updateInsert(req, res) {
   try {
     await Controller.updateInsert(req.body);
     response.success(req, res, "correct insert", 200);
   } catch (error) {
+    response.error(req, res, error.message, 500);
+  }
+}
+
+async function follow(req, res, next) {
+  try {
+    const result = await Controller.follow(req.user.id, req.params.id);
+    response.success(req, res, result, 200);
+  } catch (error) {
+    console.log(error);
+    response.error(req, res, error.message, 500);
+  }
+}
+
+async function following(req, res, next) {
+  try {
+    const result = await Controller.following(req.params.id);
+    response.success(req, res, result, 200);
+  } catch (error) {
+    console.log(error);
     response.error(req, res, error.message, 500);
   }
 }

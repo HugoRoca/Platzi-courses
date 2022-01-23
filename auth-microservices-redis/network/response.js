@@ -16,6 +16,6 @@ exports.error = (req, res, message, status) => {
   res.status(status).send({
     error: true,
     status: statusCode,
-    body: message,
+    body: statusMessage,
   });
 };

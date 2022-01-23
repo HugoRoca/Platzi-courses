@@ -19,6 +19,10 @@ const check = {
 
     if (decoded.id !== owner) throw error("Not authorized");
   },
+  logged: (req) => {
+    const decoded = decodeHeader(req);
+    console.log(decoded);
+  },
 };
 
 function getToken(auth) {

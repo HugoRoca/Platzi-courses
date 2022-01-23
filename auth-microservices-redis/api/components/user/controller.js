@@ -17,6 +17,7 @@ module.exports = (injectStore) => {
   }
 
   async function updateInsert(body) {
+    let isNew = false;
     const user = {
       name: body.name,
       userName: body.userName,
@@ -24,19 +25,44 @@ module.exports = (injectStore) => {
     };
 
     if (body.password || body.userName) {
-      await auth.updateInsert({
-        id: user.id,
-        userName: user.userName,
-        password: body.password,
-      });
+      isNew = true;
+      await auth.updateInsert(
+        {
+          id: user.id,
+          userName: user.userName,
+          password: body.password,
+        },
+        true
+      );
     }
 
-    return store.updateInsert(TABLE, user);
+    return store.updateInsert(TABLE, user, isNew);
+  }
+
+  async function follow(from, to) {
+    return await store.updateInsert(
+      `${TABLE}_follow`,
+      {
+        user_from: from,
+        user_to: to,
+      },
+      true
+    );
+  }
+
+  async function following(id) {
+    const join = {};
+    join[TABLE] = "user_to";
+    const query = { user_from: id };
+    console.log(join, query);
+    return await store.query(`${TABLE}_follow`, query, join);
   }
 
   return {
     list,
     get,
     updateInsert,
+    follow,
+    following,
   };
 };
