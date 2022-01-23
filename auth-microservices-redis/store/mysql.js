@@ -36,3 +36,69 @@ function handleConnection() {
 }
 
 handleConnection();
+
+function list(table) {
+  return new Promise((resolve, reject) => {
+    connection.query(`SELECT * FROM ${table}`, (err, result) => {
+      if (err) return reject(err);
+      resolve(result);
+    });
+  });
+}
+
+function get(table, id) {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `SELECT * FROM ${table} WHERE id = ${id}`,
+      (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      }
+    );
+  });
+}
+
+function insert(table, data) {
+  return new Promise((resolve, reject) => {
+    connection.query(`INSERT INTO ${table} SET ?`, data, (err, result) => {
+      if (err) return reject(err);
+      resolve(result);
+    });
+  });
+}
+
+function update(table, data) {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `UPDATE ${table} SET ? WHERE id = ?`,
+      [data, data.id],
+      (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      }
+    );
+  });
+}
+
+function updateInsert(table, data, isNew) {
+  if (data && isNew) {
+    return update(table, data);
+  }
+  return insert(table, data);
+}
+
+function query(table, query) {
+  return new Promise((resolve, reject) => {
+    connection.query(`SELECT * FROM ${table} WHERE ?`, query, (err, result) => {
+      if (err) return reject(err);
+      resolve(result);
+    });
+  });
+}
+
+module.exports = {
+  list,
+  get,
+  updateInsert,
+  query,
+};

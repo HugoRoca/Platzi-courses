@@ -9,7 +9,7 @@ async function get(table, id) {
   return collection.filter((item) => item.id === id)[0] || null;
 }
 
-function updateInsert(table, data) {
+function updateInsert(table, data, isNew = false) {
   if (!db[table]) db[table] = [];
   db[table].push(data);
 }
