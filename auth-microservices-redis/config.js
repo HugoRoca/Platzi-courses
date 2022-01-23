@@ -6,9 +6,9 @@ module.exports = {
     secret: process.env.JWT_SECRET || "secret",
   },
   mysql: {
-    host: process.env.MYSQL_HOST || "sql10.freemysqlhosting.net",
-    user: process.env.MYSQL_USER || "sql10467239",
-    pass: process.env.MYSQL_PASS || "",
-    database: process.env.MYSQL_DATABASE || "sql10467239",
+    host: process.env.MYSQL_HOST || "localhost",
+    user: process.env.MYSQL_USER || "root",
+    pass: process.env.MYSQL_PASS || "admin123",
+    database: process.env.MYSQL_DATABASE || "app_auth_microservice_redis",
   },
 };
