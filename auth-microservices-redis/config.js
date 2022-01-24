@@ -11,4 +11,11 @@ module.exports = {
     pass: process.env.MYSQL_PASS || "admin123",
     database: process.env.MYSQL_DATABASE || "app_auth_microservice_redis",
   },
+  mysql_service: {
+    port: process.env.MYSQL_SERVICE_PORT || 3001,
+    host: process.env.MYSQL_SERVICE_HOST || "localhost",
+  },
+  post: {
+    port: process.env.POST_PORT || 3002,
+  },
 };

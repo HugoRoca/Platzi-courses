@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon api/index"
+    "dev": "nodemon api/index",
+    "dev:mysql": "nodemon mysql/index",
+    "dev:post": "nodemon post/index"
   },
   "keywords": [],
   "author": "Hugo Rock",
@@ -16,6 +18,7 @@
     "mysql": "^2.18.1",
     "nanoid": "^3.2.0",
     "nodemon": "^2.0.15",
+    "request": "^2.88.2",
     "swagger-ui-express": "^4.3.0"
   }
 }

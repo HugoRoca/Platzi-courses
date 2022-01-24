@@ -17,7 +17,6 @@ module.exports = (injectStore) => {
       text: body.text,
       user: userId,
     };
-    console.log(data);
     return await store.updateInsert(TABLE, data, true);
   }
 
