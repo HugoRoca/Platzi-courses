@@ -9,6 +9,7 @@ module.exports = (action) => {
         next();
         break;
       case "follow":
+      case "post":
         auth.check.logged(req);
         next();
         break;

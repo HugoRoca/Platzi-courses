@@ -49,7 +49,7 @@ function list(table) {
 function get(table, id) {
   return new Promise((resolve, reject) => {
     connection.query(
-      `SELECT * FROM ${table} WHERE id = ${id}`,
+      `SELECT * FROM ${table} WHERE id = '${id}'`,
       (err, result) => {
         if (err) return reject(err);
         resolve(result);
