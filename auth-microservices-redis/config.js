@@ -18,4 +18,10 @@ module.exports = {
   post: {
     port: process.env.POST_PORT || 3002,
   },
+  cache: {
+    port: process.env.CACHE_PORT || 3003,
+    port_cache: process.env.CACHE_PORT || "10776",
+    host: process.env.CACHE_HOST || "redislabs.com",
+    password: process.env.CACHE_PASSWORD || "",
+  },
 };
