@@ -1,0 +1,21 @@
+{
+  "name": "module-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "standard --fix"
+  },
+  "keywords": [],
+  "author": "Hugo Rock",
+  "license": "ISC",
+  "devDependencies": {
+    "standard": "^16.0.4"
+  },
+  "dependencies": {
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.14.1"
+  }
+}
