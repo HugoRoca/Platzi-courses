@@ -6,17 +6,21 @@
   "scripts": {
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "setup": "DEBUG=module:* node setup.js"
+    "setup": "DEBUG=module:* node setup.js",
+    "test": "DEBUG=module:* ava tests/ --verbose"
   },
   "keywords": [],
   "author": "Hugo Rock",
   "license": "ISC",
   "devDependencies": {
+    "sqlite3": "^5.0.2",
     "standard": "^16.0.4"
   },
   "dependencies": {
+    "ava": "^4.0.1",
     "chalk": "^5.0.0",
     "debug": "^4.3.3",
+    "defaults": "^1.0.3",
     "inquirer": "^8.2.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
