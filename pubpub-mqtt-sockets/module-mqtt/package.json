@@ -1,0 +1,28 @@
+{
+  "name": "module-mqtt",
+  "version": "1.0.0",
+  "description": "## `agent/connected`",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "start:dev": "DEBUG=module:* nodemon server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "keywords": [],
+  "author": "Hugo Rock",
+  "license": "ISC",
+  "private": true,
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "standard": "^16.0.4"
+  },
+  "dependencies": {
+    "aedes": "^0.46.2",
+    "aedes-persistence-redis": "^8.0.1",
+    "chalk": "^5.0.0",
+    "debug": "^4.3.3",
+    "mqemitter-redis": "^4.2.0",
+    "redis": "^4.0.2"
+  }
+}
