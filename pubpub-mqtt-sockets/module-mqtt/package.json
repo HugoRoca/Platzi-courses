@@ -23,6 +23,7 @@
     "chalk": "^5.0.0",
     "debug": "^4.3.3",
     "mqemitter-redis": "^4.2.0",
-    "redis": "^4.0.2"
+    "redis": "^4.0.2",
+    "module-db": "file:../module-db"
   }
 }

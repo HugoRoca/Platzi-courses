@@ -1,5 +1,14 @@
 # Module MQTT
 
+```
+-t => topic
+-h => host
+-m => message
+mqtt pub -t 'module' -h 'localhost' -m '{"test":"test"}'
+
+mqtt pub -t 'agent/message' -m '{"agent": {"uuid": "yyy", "name": "name", "username": "username", "pid": 10, "hostname": "myLocalPC"}, "metrics": [{"type": "memory", "value": "1001"}, {"type": "temp", "value": "33"}]}'
+```
+
 ## `agent/connected`
 
 ```js
