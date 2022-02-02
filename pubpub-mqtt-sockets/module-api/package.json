@@ -1,0 +1,24 @@
+{
+  "name": "module-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "dev": "DEBUG=module:* nodemon server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "keywords": [],
+  "author": "Hugo Rock",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "standard": "^16.0.4"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "debug": "^4.3.3",
+    "express": "^4.17.2"
+  }
+}
