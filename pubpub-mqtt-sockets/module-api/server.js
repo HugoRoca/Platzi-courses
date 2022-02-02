@@ -2,10 +2,11 @@ const http = require('http')
 const express = require('express')
 const chalk = require('chalk')
 const debug = require('debug')('module:api')
+const asyncIfy = require('express-asyncify')
 
 const api = require('./api')
 
-const app = express()
+const app = asyncIfy(express())
 const server = http.createServer(app)
 const port = process.env.PORT || 3000
 
@@ -28,9 +29,13 @@ function handleFatalError(err) {
   process.exit(1)
 }
 
-process.on('uncaughtException', handleFatalError)
-process.on('unhandledRejection', handleFatalError)
+if (!module.main) {
+  process.on('uncaughtException', handleFatalError)
+  process.on('unhandledRejection', handleFatalError)
 
-server.listen(port, () => {
-  console.log(`${chalk.green('[module-api]')} server listening on port ${port}`)
-})
+  server.listen(port, () => {
+    console.log(
+      `${chalk.green('[module-api]')} server listening on port ${port}`
+    )
+  })
+}
