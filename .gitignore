@@ -105,3 +105,5 @@ dist
 
 mysql_data
 postgres_data
+redis_data
+redis.conf
