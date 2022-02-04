@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "start:dev": "DEBUG=module:* nodemon server.js",
+    "dev": "DEBUG=module:* nodemon server.js",
     "start": "NODE_ENV=production node server.js"
   },
   "keywords": [],
