@@ -21,6 +21,7 @@
     "chalk": "^2.4.1",
     "debug": "^4.3.3",
     "express": "^4.17.2",
+    "express-asyncify": "^1.0.1",
     "module-agent": "file:../module-agent",
     "socket.io": "^4.4.1"
   }
