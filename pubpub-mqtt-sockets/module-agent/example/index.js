@@ -1,7 +1,7 @@
 const ModuleAgent = require('../index')
 
 const agent = new ModuleAgent({
-  name: 'myApp',
+  name: 'myAppCLI',
   username: 'admin',
   interval: 2000,
 })

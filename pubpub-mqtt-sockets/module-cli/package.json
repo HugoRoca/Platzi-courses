@@ -15,6 +15,7 @@
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.10.1",
     "minimist": "^1.2.5",
-    "module-agent": "file:../module-agent"
+    "module-agent": "file:../module-agent",
+    "moment": "^2.29.1"
   }
 }
