@@ -1,22 +1,26 @@
 const debug = require('debug')('module:db:setup')
 // const chalk = require('chalk')
 const inquirer = require('inquirer')
+const minimist = require('minimist')
 
 const db = require('./index')
+const args = minimist(process.argv)
 
 const prompts = inquirer.createPromptModule()
 
 async function setup() {
-  const answer = await prompts([
-    {
-      type: 'confirm',
-      name: 'setup',
-      message: 'This will destroy your database, are you sure?',
-    },
-  ])
+  if (!args.yes) {
+    const answer = await prompts([
+      {
+        type: 'confirm',
+        name: 'setup',
+        message: 'This will destroy your database, are you sure?',
+      },
+    ])
 
-  if (!answer.setup) {
-    return console.log('Nothing happened :)')
+    if (!answer.setup) {
+      return console.log('Nothing happened :)')
+    }
   }
 
   const config = {
