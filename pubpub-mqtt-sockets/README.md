@@ -6,6 +6,7 @@
 
 ## Installs others libraries
 
+```
 install ansible and vagrant
 
 ansible
@@ -25,3 +26,15 @@ apt-get install virtualbox
 apt-get install vagrant
 
 vagrant -v
+```
+
+```
+- postgresql:
+sudo ansible-galaxy install ANXS.postgresql
+
+- redis:
+sudo ansible-galaxy install geerlingguy.redis
+
+- NGINX:
+sudo ansible-galaxy install jdauphant.nginx
+```
