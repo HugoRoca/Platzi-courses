@@ -48,7 +48,7 @@ module.exports.datastores = {
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
     adapter: 'sails-mongo',
-    url: 'mongodb://root:rootpassword@localhost:27017/Ride',
+    url: 'mongodb://localhost:27017/Ride',
     // port: '27017',
     // host: '127.0.0.1',
     // database: 'Ride',
