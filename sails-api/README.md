@@ -15,3 +15,11 @@ sudo apt install mongodb-clients
 Para que me sirviera el comando
 
 mongo -version
+
+## IONIC
+
+```
+ionic start frontend sidemenu
+
+ionic generate page rides
+```
