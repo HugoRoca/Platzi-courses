@@ -19,4 +19,17 @@ export class RidesPage implements OnInit {
   getRides() {
     this.rides = this.rideService.getAll();
   }
+
+  delete(id) {
+    this.rideService.delete(id).subscribe(
+      (data) => {
+        alert('Delete successfully');
+        this.getRides();
+      },
+      (err) => {
+        alert('Something wrong happened');
+        console.log(err);
+      }
+    );
+  }
 }

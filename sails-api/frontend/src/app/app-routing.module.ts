@@ -5,22 +5,29 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    loadChildren: () =>
+      import('./folder/folder.module').then((m) => m.FolderPageModule),
   },
   {
     path: 'rides',
-    loadChildren: () => import('./rides/rides.module').then( m => m.RidesPageModule)
-  }
+    loadChildren: () =>
+      import('./rides/rides.module').then((m) => m.RidesPageModule),
+  },
+  {
+    path: 'ride-form/:id',
+    loadChildren: () =>
+      import('./ride-form/ride-form.module').then((m) => m.RideFormPageModule),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
