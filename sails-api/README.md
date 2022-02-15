@@ -2,6 +2,10 @@
 
 ```
 sails new backend --no-frontend
+
+sails generate model User email:string password:string
+
+sails generate controller User signup login
 ```
 
 Si estás trabajando en WSL Ubuntu, recuerda instalarlo con
