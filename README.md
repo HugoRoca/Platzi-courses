@@ -3,6 +3,7 @@
 <ol>
 	<li>Node.js backend</li>
   <ul>
+    <li>Terminal</li>
     <li>Javascript advance</li>
     <li>Javascript data structure</li>
     <li>Fundaments NodeJS</li>
