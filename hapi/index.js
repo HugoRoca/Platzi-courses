@@ -48,10 +48,24 @@ async function init() {
       },
     });
 
-    // server.route({
-    //   method: "POST",
-    //   path: "/"
-    // })
+    server.route({
+      method: "GET",
+      path: "/register",
+      handler: (req, h) => {
+        return h.view("register", {
+          title: "Register",
+        });
+      },
+    });
+
+    server.route({
+      method: "POST",
+      path: "/create-user",
+      handler: (req, h) => {
+        console.log(req.payload);
+        return "user created";
+      },
+    });
 
     await server.start();
   } catch (error) {
