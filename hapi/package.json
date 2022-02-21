@@ -12,8 +12,9 @@
   "dependencies": {
     "@hapi/hapi": "^20.2.1",
     "@hapi/inert": "^6.0.5",
+    "@hapi/joi": "^17.1.1",
+    "@hapi/vision": "^6.1.0",
     "handlebars": "^4.7.7",
-    "nodemon": "^2.0.15",
-    "vision": "^5.4.4"
+    "nodemon": "^2.0.15"
   }
 }

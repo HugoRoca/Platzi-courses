@@ -1,8 +1,8 @@
 const Hapi = require("@hapi/hapi");
 const inert = require("@hapi/inert");
+const vision = require("@hapi/vision");
 const handlebars = require("handlebars");
 const path = require("path");
-const vision = require("vision");
 
 const routes = require("./routes");
 
