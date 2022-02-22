@@ -9,5 +9,6 @@
     <li>Fundaments NodeJS</li>
     <li>Pub Sub Redis with MQTT and Sockets</li>
     <li>Sails API</li>
+    <li>Hapi API</li>
   </ul>
 </ol>
