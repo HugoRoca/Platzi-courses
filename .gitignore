@@ -108,3 +108,5 @@ postgres_data
 redis_data
 redis.conf
 mongo-data
+
+firebase.json
