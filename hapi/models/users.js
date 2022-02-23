@@ -16,6 +16,25 @@ module.exports = class {
     return newUser.key;
   }
 
+  async validateUser(data) {
+    const user = { ...data };
+    const userQuery = await this.collection
+      .orderByChild("email")
+      .equalTo(user.email)
+      .once("value");
+
+    const userFound = userQuery.val();
+
+    if (!userFound) return false;
+
+    const [, userId] = Object.entries(userFound)[0];
+
+    const passwordRight = await bcrypt.compare(user.password, userId.password);
+    const result = passwordRight ? userId : false;
+
+    return result;
+  }
+
   async encrypt(password) {
     const saltRounds = 10;
     const hashPassword = await bcrypt.hash(password, saltRounds);

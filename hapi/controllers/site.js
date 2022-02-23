@@ -8,7 +8,14 @@ function register(req, h) {
   });
 }
 
+function login(req, h) {
+  return h.view("login", {
+    title: "SignIn",
+  });
+}
+
 module.exports = {
   home,
   register,
+  login,
 };

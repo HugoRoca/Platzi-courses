@@ -9,7 +9,6 @@ module.exports = [
     path: "/",
     handler: site.home,
   },
-
   {
     method: "GET",
     path: "/{param*}",
@@ -20,15 +19,14 @@ module.exports = [
       },
     },
   },
-
   {
     method: "GET",
     path: "/register",
     handler: site.register,
   },
-
   {
     method: "POST",
+    path: "/create-user",
     options: {
       validate: {
         payload: Joi.object({
@@ -38,7 +36,24 @@ module.exports = [
         }),
       },
     },
-    path: "/create-user",
     handler: user.createUser,
+  },
+  {
+    method: "GET",
+    path: "/login",
+    handler: site.login,
+  },
+  {
+    method: "POST",
+    path: "/validate-user",
+    options: {
+      validate: {
+        payload: Joi.object({
+          email: Joi.string().email().required(),
+          password: Joi.string().required().min(6),
+        }),
+      },
+    },
+    handler: user.validateUser,
   },
 ];
