@@ -1,3 +1,5 @@
+const Boom = require("@hapi/boom");
+
 const { users } = require("../models/index");
 
 async function createUser(req, h) {
@@ -6,10 +8,16 @@ async function createUser(req, h) {
     result = await users.create(req.payload);
   } catch (error) {
     console.error(error);
-    return h.response(`An error occurred while creating user`).code(500);
+    return h.view(`register`, {
+      title: "Register",
+      error: "Error creating user",
+    });
   }
 
-  return h.response(`User created successfully ID:${result}`);
+  return h.view(`register`, {
+    title: "Register",
+    success: "User created successfully",
+  });
 }
 
 async function validateUser(req, h) {
@@ -17,10 +25,18 @@ async function validateUser(req, h) {
   try {
     result = await users.validateUser(req.payload);
 
-    if (!result) return h.response(`Email or password is incorrect`).code(401);
+    if (!result) {
+      return h.view("login", {
+        title: "Login",
+        error: "Email or password is incorrect",
+      });
+    }
   } catch (error) {
     console.error(error);
-    return h.response(`An error occurred while login user`).code(500);
+    return h.view("login", {
+      title: "Login",
+      error: "An error occurred while logging",
+    });
   }
 
   return h.redirect(`/`).state("user", {
@@ -33,8 +49,13 @@ function logout(req, h) {
   return h.redirect("/login").unstate("user");
 }
 
+function failValidation(req, h, err) {
+  return Boom.badRequest(`Failed validation`, req.payload);
+}
+
 module.exports = {
   createUser,
   validateUser,
   logout,
+  failValidation,
 };

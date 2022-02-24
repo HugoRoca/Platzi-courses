@@ -48,4 +48,14 @@ async function init() {
   console.log(`Server running in port ${server.info.uri}`);
 }
 
+// For promises errors
+process.on("unhandledRejection", (error) => {
+  console.error(`UnhandledRejection`, error.message);
+});
+
+// for any issus
+process.on("uncaughtException", (error) => {
+  console.log(`UncaughtException`, error.message);
+});
+
 init();

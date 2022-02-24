@@ -34,6 +34,7 @@ module.exports = [
           email: Joi.string().email().required(),
           password: Joi.string().required().min(6),
         }),
+        failAction: user.failValidation,
       },
     },
     handler: user.createUser,
@@ -61,4 +62,19 @@ module.exports = [
     },
     handler: user.validateUser,
   },
+  {
+    method: "GET",
+    path: "/assets/{param*}",
+    handler: {
+      directory: {
+        path: ".",
+        index: ["index.html"],
+      },
+    },
+  },
+  // {
+  //   method: ["GET", "POST"],
+  //   path: "/{any*}",
+  //   handler: site.notFound,
+  // },
 ];
