@@ -11,16 +11,6 @@ module.exports = [
   },
   {
     method: "GET",
-    path: "/{param*}",
-    handler: {
-      directory: {
-        path: ".",
-        index: ["index.html"],
-      },
-    },
-  },
-  {
-    method: "GET",
     path: "/register",
     handler: site.register,
   },
@@ -58,6 +48,7 @@ module.exports = [
           email: Joi.string().email().required(),
           password: Joi.string().required().min(6),
         }),
+        failAction: user.failValidation,
       },
     },
     handler: user.validateUser,
@@ -72,9 +63,9 @@ module.exports = [
       },
     },
   },
-  // {
-  //   method: ["GET", "POST"],
-  //   path: "/{any*}",
-  //   handler: site.notFound,
-  // },
+  {
+    method: ["GET", "POST"],
+    path: "/{any*}",
+    handler: site.notFound,
+  },
 ];

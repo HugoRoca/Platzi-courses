@@ -4,6 +4,8 @@ const vision = require("@hapi/vision");
 const handlebars = require("handlebars");
 const path = require("path");
 
+const site = require("./controllers/site");
+
 const routes = require("./routes");
 
 const server = Hapi.server({
@@ -37,6 +39,7 @@ async function init() {
       layoutPath: "views",
     });
 
+    server.ext("onPreResponse", site.fileNotFound);
     server.route(routes);
 
     await server.start();
