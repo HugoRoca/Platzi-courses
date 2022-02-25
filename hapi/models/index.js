@@ -8,8 +8,10 @@ firebase.initializeApp({
 
 const db = firebase.database();
 
-const User = require("./users");
+const User = require("./user");
+const Questions = require("./question");
 
 module.exports = {
   users: new User(db),
+  Questions: new Questions(db),
 };
