@@ -4,7 +4,6 @@ async function home(req, h) {
   let data;
   try {
     data = await question.getLast(10);
-    console.log(data);
   } catch (error) {
     console.error(error);
   }
@@ -67,7 +66,6 @@ async function viewQuestion(req, h) {
   let data;
   try {
     data = await question.getOne(req.params.id);
-    console.log(data);
     if (!data) return notFound(req, h);
   } catch (error) {
     console.error("viewQuestion", error);
