@@ -51,6 +51,7 @@ async function init() {
   console.log(`Server running in port ${server.info.uri}`);
 }
 
+// this code is important
 // For promises errors
 process.on("unhandledRejection", (error) => {
   console.error(`UnhandledRejection`, error.message);
