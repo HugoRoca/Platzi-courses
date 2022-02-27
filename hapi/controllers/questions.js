@@ -18,6 +18,20 @@ async function createQuestion(req, h) {
   return h.response("`Create successfully", result);
 }
 
+async function answerQuestion(req, h) {
+  let result;
+  try {
+    result = await question.answer(req.payload, req.state.user);
+  } catch (error) {
+    console.error(error);
+  }
+
+  const data = { ...req.payload };
+
+  return h.redirect(`/question/${data.id}`);
+}
+
 module.exports = {
   createQuestion,
+  answerQuestion,
 };

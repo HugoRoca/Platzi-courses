@@ -66,6 +66,20 @@ module.exports = [
   },
   {
     method: "POST",
+    path: "/answer-question",
+    options: {
+      validate: {
+        payload: Joi.object({
+          answer: Joi.string().required(),
+          id: Joi.string().required(),
+        }),
+        failAction: user.failValidation,
+      },
+    },
+    handler: question.answerQuestion,
+  },
+  {
+    method: "POST",
     path: "/validate-user",
     options: {
       validate: {

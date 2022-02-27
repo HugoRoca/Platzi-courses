@@ -27,4 +27,14 @@ module.exports = class {
 
     return data;
   }
+
+  async answer(args, user) {
+    const data = { ...args };
+    const answers = await this.collection.child(data.id).child("answers").push({
+      text: data.answer,
+      user: user,
+    });
+
+    return answers;
+  }
 };
