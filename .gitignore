@@ -110,3 +110,4 @@ redis.conf
 mongo-data
 
 firebase.json
+.idea
