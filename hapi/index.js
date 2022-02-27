@@ -1,7 +1,7 @@
 const Hapi = require("@hapi/hapi");
 const inert = require("@hapi/inert");
 const vision = require("@hapi/vision");
-const handlebars = require("./lib/helpers");
+const handlebars = require("./utils/helpers");
 const path = require("path");
 
 const site = require("./controllers/site");
