@@ -1,11 +1,11 @@
 const Hapi = require("@hapi/hapi");
 const inert = require("@hapi/inert");
 const vision = require("@hapi/vision");
-const handlebars = require("./utils/helpers");
 const path = require("path");
 
 const site = require("./controllers/site");
-
+const handlebars = require("./utils/helpers");
+const methods = require('./utils/methods')
 const routes = require("./routes");
 
 const server = Hapi.server({
@@ -22,6 +22,8 @@ async function init() {
   try {
     await server.register(inert);
     await server.register(vision);
+
+    server.method('setAnswerRight', methods.setAnswerRight)
 
     server.state("user", {
       ttl: 1000 * 60 * 60 * 24 * 7, // a week

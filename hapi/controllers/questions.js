@@ -8,8 +8,7 @@ async function createQuestion(req, h) {
     console.error(`An error occurred`, error);
     return h
       .view("ask", {
-        title: "Create ask",
-        error: "Error while created question",
+        title: "Create ask", error: "Error while created question",
       })
       .code(500)
       .takeover();
@@ -26,12 +25,22 @@ async function answerQuestion(req, h) {
     console.error(error);
   }
 
-  const data = { ...req.payload };
+  const data = {...req.payload};
 
   return h.redirect(`/question/${data.id}`);
 }
 
+async function setAnswerRight(req, h) {
+
+  try {
+    result = await req.server.methods.setAnswerRight(req.params.questionId, req.params.answerId, req.state.user)
+  } catch (err) {
+    console.error('setAnswerRight', err)
+  }
+
+  return h.redirect(`/question/${req.params.questionId}`)
+}
+
 module.exports = {
-  createQuestion,
-  answerQuestion,
+  createQuestion, answerQuestion, setAnswerRight
 };
