@@ -27,7 +27,7 @@ function register(req, h) {
 }
 
 function login(req, h) {
-  if (!req.state.user) {
+  if (req.state.user) {
     return h.redirect(`/`);
   }
 
