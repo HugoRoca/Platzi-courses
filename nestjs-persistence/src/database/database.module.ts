@@ -1,5 +1,6 @@
 import { Module, Global } from '@nestjs/common';
 import { Client } from 'pg';
+import * as sql from 'mssql';
 
 const API_KEY = '12345634';
 const API_KEY_PROD = 'PROD1212121SA';
@@ -12,7 +13,22 @@ const client = new Client({
   port: 5432,
 });
 
-client.connect();
+const config = {
+  user: ``,
+  password: ``,
+  server: ``,
+  port: 1433,
+  database: ``,
+  pool: {
+    idleTimeoutMillis: 60 * 1000,
+  },
+  options: {
+    enableArithAbort: true,
+    trustServerCertificate: true,
+  },
+};
+
+const clientSQL = new sql.ConnectionPool(config);
 
 @Global()
 @Module({
@@ -25,7 +41,11 @@ client.connect();
       provide: 'PG',
       useValue: client,
     },
+    {
+      provide: 'SQL',
+      useValue: clientSQL,
+    },
   ],
-  exports: ['API_KEY', 'PG'],
+  exports: ['API_KEY', 'PG', 'SQL'],
 })
 export class DatabaseModule {}

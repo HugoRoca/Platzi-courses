@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { Client } from 'pg';
+import { ConnectionPool, VarChar } from 'mssql';
 
 import config from './config';
 
@@ -8,6 +9,7 @@ import config from './config';
 export class AppService {
   constructor(
     @Inject('PG') private clientPG: Client,
+    @Inject('SQL') private clientSQL: ConnectionPool,
     @Inject(config.KEY) private configService: ConfigType<typeof config>,
   ) {}
 
@@ -23,5 +25,21 @@ export class AppService {
         resolve(res.rows);
       });
     });
+  }
+
+  async getDataFromSQL(document: string) {
+    let result;
+    const pool = await this.clientSQL.connect();
+
+    try {
+      result = pool
+        .request()
+        .input('document', VarChar, document)
+        .execute('GetPostulantDataToTestNestJs');
+    } catch (error) {
+      console.error(error);
+    }
+
+    return result;
   }
 }

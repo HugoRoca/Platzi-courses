@@ -25,4 +25,9 @@ export class AppController {
   tasks() {
     return this.appService.getTasks();
   }
+
+  @Get('test/sql/:document')
+  testSQL(@Param('document') document: string) {
+    return this.appService.getDataFromSQL(document);
+  }
 }
