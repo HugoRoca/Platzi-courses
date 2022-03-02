@@ -1,19 +1,14 @@
 import { Module, Global } from '@nestjs/common';
+import { ConfigType } from '@nestjs/config';
 import { Client } from 'pg';
 import * as sql from 'mssql';
+
+import config from '../config';
 
 const API_KEY = '12345634';
 const API_KEY_PROD = 'PROD1212121SA';
 
-const client = new Client({
-  user: 'root',
-  host: 'localhost',
-  database: 'my_db_nest',
-  password: '123456',
-  port: 5432,
-});
-
-const config = {
+const configSQL = {
   user: ``,
   password: ``,
   server: ``,
@@ -28,7 +23,7 @@ const config = {
   },
 };
 
-const clientSQL = new sql.ConnectionPool(config);
+const clientSQL = new sql.ConnectionPool(configSQL);
 
 @Global()
 @Module({
@@ -39,7 +34,22 @@ const clientSQL = new sql.ConnectionPool(config);
     },
     {
       provide: 'PG',
-      useValue: client,
+      // TODO: exec functions async and easy for injects
+      useFactory: (configService: ConfigType<typeof config>) => {
+        const { user, host, port, dbName, password } = configService.postgres;
+        const client = new Client({
+          user,
+          host,
+          database: dbName,
+          password,
+          port,
+        });
+
+        client.connect();
+
+        return client;
+      },
+      inject: [config.KEY],
     },
     {
       provide: 'SQL',
