@@ -10,5 +10,6 @@
     <li>Pub Sub Redis with MQTT and Sockets</li>
     <li>Sails API</li>
     <li>Hapi API</li>
+    <li>NestJS</li>
   </ul>
 </ol>
