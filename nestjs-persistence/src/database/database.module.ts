@@ -41,6 +41,8 @@ const clientSQL = new sql.ConnectionPool(configSQL);
           username: user,
           password,
           database: dbName,
+          synchronize: true, // For dev is true, in PRD is false!!
+          autoLoadEntities: true,
         };
       },
     }),
