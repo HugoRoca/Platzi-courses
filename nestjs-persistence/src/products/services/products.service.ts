@@ -7,8 +7,6 @@ import { CreateProductDto, UpdateProductDto } from './../dtos/products.dtos';
 
 @Injectable()
 export class ProductsService {
-  private counterId = 1;
-
   constructor(
     @InjectRepository(Product) private productRepo: Repository<Product>,
   ) {}
