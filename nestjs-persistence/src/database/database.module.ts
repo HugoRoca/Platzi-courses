@@ -32,10 +32,10 @@ const clientSQL = new sql.ConnectionPool(configSQL);
     TypeOrmModule.forRootAsync({
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => {
-        const { user, host, port, dbName, password } = configService.mysql;
+        const { user, host, port, dbName, password } = configService.postgres;
 
         return {
-          type: 'mysql',
+          type: 'postgres',
           host,
           port,
           username: user,
