@@ -1,4 +1,6 @@
-import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, Entity, OneToOne } from 'typeorm';
+import { DateAt } from '../../database/dateAt.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Customer {
@@ -13,4 +15,10 @@ export class Customer {
 
   @Column({ type: 'varchar', length: 20 })
   phone: string;
+
+  @Column(() => DateAt)
+  register: DateAt;
+
+  @OneToOne(() => User, (user) => user.customer, { nullable: true })
+  user: User;
 }
