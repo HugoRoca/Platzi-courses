@@ -5,25 +5,30 @@ import { Repository } from 'typeorm';
 import { Product } from './../entities/product.entity';
 import { CreateProductDto, UpdateProductDto } from './../dtos/products.dtos';
 
+import { BrandsService } from './brands.service';
+
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectRepository(Product) private productRepo: Repository<Product>,
+    @InjectRepository(Product) private productRepository: Repository<Product>,
+    private brandsService: BrandsService,
   ) {}
 
   findAll() {
-    return this.productRepo.find();
+    return this.productRepository.find({
+      relations: ['brand'],
+    });
   }
 
   async findOne(id: number) {
-    const product = await this.productRepo.findOne(id);
+    const product = await this.productRepository.findOne(id);
     if (!product) {
       throw new NotFoundException(`Product #${id} not found`);
     }
     return product;
   }
 
-  create(data: CreateProductDto) {
+  async create(data: CreateProductDto) {
     // const newProduct = new Product();
     // newProduct.image = data.image;
     // newProduct.name = data.name;
@@ -32,19 +37,30 @@ export class ProductsService {
     // newProduct.stock = data.stock;
 
     // Create only create instance of model
-    const newProduct = this.productRepo.create(data);
-    return this.productRepo.save(newProduct);
+    const newProduct = this.productRepository.create(data);
+
+    if (data.brandId) {
+      const brand = await this.brandsService.findOne(data.brandId);
+      newProduct.brand = brand;
+    }
+
+    return this.productRepository.save(newProduct);
   }
 
   async update(id: number, changes: UpdateProductDto) {
-    const product = await this.productRepo.findOne(id);
+    const product = await this.productRepository.findOne(id);
 
-    this.productRepo.merge(product, changes);
+    if (changes.brandId) {
+      const brand = await this.brandsService.findOne(changes.brandId);
+      product.brand = brand;
+    }
 
-    return this.productRepo.save(product);
+    this.productRepository.merge(product, changes);
+
+    return this.productRepository.save(product);
   }
 
   remove(id: number) {
-    return this.productRepo.delete(id);
+    return this.productRepository.delete(id);
   }
 }
