@@ -13,5 +13,5 @@ export class Brand {
   image: string;
 
   @OneToMany(() => Product, (product) => product.brand)
-  products: Brand;
+  products: Product[];
 }
