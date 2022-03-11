@@ -67,7 +67,25 @@ export class ProductsService {
       product.brand = brand;
     }
 
+    if (changes.categoriesId) {
+      const categories = await this.categoryRepository.findByIds(
+        changes.categoriesId,
+      );
+      product.categories = categories;
+    }
+
     this.productRepository.merge(product, changes);
+
+    return this.productRepository.save(product);
+  }
+
+  async removeCategoryInProduct(productId: number, categoryId: number) {
+    const product = await this.productRepository.findOne(productId, {
+      relations: ['categories'],
+    });
+    product.categories = product.categories.filter(
+      (item) => item.id !== categoryId,
+    );
 
     return this.productRepository.save(product);
   }
