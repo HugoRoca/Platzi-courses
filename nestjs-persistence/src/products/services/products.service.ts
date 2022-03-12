@@ -90,6 +90,17 @@ export class ProductsService {
     return this.productRepository.save(product);
   }
 
+  async addCategoryToProduct(productId: number, categoryId: number) {
+    const product = await this.productRepository.findOne(productId, {
+      relations: ['categories'],
+    });
+    const category = await this.categoryRepository.findOne(categoryId);
+
+    product.categories.push(category);
+
+    return this.productRepository.save(product);
+  }
+
   remove(id: number) {
     return this.productRepository.delete(id);
   }

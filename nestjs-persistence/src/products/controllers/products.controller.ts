@@ -73,4 +73,12 @@ export class ProductsController {
   ) {
     return this.productsService.removeCategoryInProduct(productId, categoryId);
   }
+
+  @Put(':productId/category/:categoryId')
+  addCategoryToProduct(
+    @Param('productId', ParseIntPipe) productId: number,
+    @Param('categoryId', ParseIntPipe) categoryId: number,
+  ) {
+    return this.productsService.addCategoryToProduct(productId, categoryId);
+  }
 }
