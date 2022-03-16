@@ -5,6 +5,7 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
+import { Exclude } from 'class-transformer';
 import { DateAt } from '../../database/dateAt.entity';
 import { Customer } from './customer.entity';
 
@@ -23,6 +24,7 @@ export class User {
   role: string;
 
   @Column(() => DateAt)
+  @Exclude()
   register: DateAt;
 
   @OneToOne(() => Customer, (customer) => customer.user, { nullable: true })

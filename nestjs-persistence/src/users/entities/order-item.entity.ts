@@ -1,4 +1,5 @@
 import { PrimaryGeneratedColumn, Entity, Column, ManyToOne } from 'typeorm';
+import { Exclude } from 'class-transformer';
 
 import { Product } from '../../products/entities/product.entity';
 import { Order } from './order.entity';
@@ -10,6 +11,7 @@ export class OrderItem {
   id: number;
 
   @Column(() => DateAt)
+  @Exclude()
   register: DateAt;
 
   @Column({ type: 'int' })
