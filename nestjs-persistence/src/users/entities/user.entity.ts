@@ -26,6 +26,6 @@ export class User {
   register: DateAt;
 
   @OneToOne(() => Customer, (customer) => customer.user, { nullable: true })
-  @JoinColumn()
+  @JoinColumn({ name: 'customer:id' })
   customer: Customer;
 }
