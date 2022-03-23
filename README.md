@@ -11,5 +11,6 @@
     <li>Sails API</li>
     <li>Hapi API</li>
     <li>NestJS</li>
+<li>NestJS TypeORM</li>
   </ul>
 </ol>
