@@ -12,5 +12,6 @@
     <li>Hapi API</li>
     <li>NestJS</li>
 <li>NestJS TypeORM</li>
+    <li>NestJS Auth TypeORM</li>
   </ul>
 </ol>
