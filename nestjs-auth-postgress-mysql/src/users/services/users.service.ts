@@ -64,7 +64,7 @@ export class UsersService {
   findByEmail(email: string) {
     return this.userRepository.findOne({
       where: { email },
-      select: ['email', 'role'],
+      select: ['email', 'role', 'password'],
     });
   }
 }
