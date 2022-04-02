@@ -1,0 +1,1 @@
+for more information visit this page: https://devhints.io/go
