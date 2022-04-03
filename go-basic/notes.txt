@@ -1,1 +1,56 @@
 for more information visit this page: https://devhints.io/go
+
+-
+for packages
+Esta parte del curso necesita una actualizacion o una aclaracion urgente
+
+No todos estamos usando la misma carpeta que el, en ese caso, tendremos problemas con los import, ya que por defecto, este busca en los archivos de instalacion de go.
+
+Para solucionar esto, hay que usar en la raiz del proyecto
+
+go mod init ruta/modulo
+En mi caso, lo cree como test/acceso, asi que el comando queda
+
+go mod init test/acceso
+esto creara un archivo go.mod
+
+module test/acceso
+
+go 1.17
+
+module test/acceso es el nombre del modulo que le dimos al comando, guardalo
+
+Luego, supongamos que tengo una carpeta llamada myPackage, y dentro tiene un archivo car.go como este
+
+package car
+
+// CarPublic car con acceso publico
+type CarPublic struct {
+	Brand string
+	Year  int
+}
+
+Nota que el package aqui es car, guardalo tambien
+
+Los archivos dentro de la misma carpeta DEBEN tener pertenecer al mismo package
+
+Para usar este archivo, le damos la siguiente ruta al import
+
+"nombre_modulo/ruta"
+En mi caso, seria
+
+import (
+	"fmt"
+	 "test/acceso/myPackage"
+)
+Para llamarla usa el nombre del paquete, seguido de lo que necesites usar
+
+var newCar car.CarPublic
+Tambien podemos usar un alias
+
+import (
+	"fmt"
+	carPackage "test/acceso/myPackage"
+)
+//...
+var newCar carPackage.CarPublic
