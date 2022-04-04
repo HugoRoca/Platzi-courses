@@ -7,15 +7,15 @@ import "fmt"
 // chan<- enter data
 // <-chan output data
 func say(text string, c chan<- string) {
-  c <- text
+	c <- text
 }
 
 func main() {
-  c := make(chan string, 1)
+	c := make(chan string, 1)
 
-  fmt.Println("Hello")
+	fmt.Println("Hello")
 
-  go say("Bye", c)
+	go say("Bye", c)
 
-  fmt.Println(<-c)
+	fmt.Println(<-c)
 }
