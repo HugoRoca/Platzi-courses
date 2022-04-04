@@ -6,7 +6,7 @@ import "fmt"
 
 // chan<- enter data
 // <-chan output data
-func say(text string, c chan<- string) {
+func sayTwo(text string, c chan<- string) {
 	c <- text
 }
 
@@ -15,7 +15,7 @@ func main() {
 
 	fmt.Println("Hello")
 
-	go say("Bye", c)
+	go sayTwo("Bye", c)
 
 	fmt.Println(<-c)
 }
