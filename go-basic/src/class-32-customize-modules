@@ -1,0 +1,8 @@
+go mod edit -replace=exampl e. com/greetings=…/greetings
+
+Go mod verify
+
+Go mod edit -dropreplace …
+Go mod vendor
+Go sum: Repertorio de todas las librerias (verificar)
+Go mod tidy: Limpiar librerias no usadas
