@@ -11,7 +11,11 @@
     <li>Sails API</li>
     <li>Hapi API</li>
     <li>NestJS</li>
-<li>NestJS TypeORM</li>
+    <li>NestJS TypeORM</li>
     <li>NestJS Auth TypeORM and deploy</li>
+  </ul>
+  <li>GO</li>
+  <ul>
+    <li>Go basic</li>
   </ul>
 </ol>
